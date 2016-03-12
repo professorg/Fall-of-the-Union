@@ -5,25 +5,28 @@
  */
 package map;
 
-import java.awt.Color;
-import java.awt.Graphics;
-import java.awt.image.BufferedImage;
-
 /**
- *
+ * Used to generate and store height maps.
  * @author Cruz
  */
-public class HeightGen {
+public class HeightGenerator {
 
     private int[][] map;
     private final int size;
 
-    public HeightGen(int s) {
+    /**
+     * Makes a new square height map.
+     * @param s the size of the new height map
+     */
+    public HeightGenerator(int s) {
 
         size = s;
         map = new int[s][s];
     }
 
+    /**
+     * Creates a new height map, accessible using getMap(). 
+     */
     public void generate() {
 
         double[][] m = new double [size][size];
@@ -158,6 +161,10 @@ public class HeightGen {
         return nMap;
     }
     
+    /**
+     *
+     * @return the height map
+     */
     public int[][] getMap(){
         
         return map;

@@ -5,28 +5,31 @@
  */
 package map;
 
-import java.awt.Color;
-import java.awt.Graphics;
-import java.awt.image.BufferedImage;
-
 /**
- *
+ * Used to color designated height maps.
  * @author Cruz
  */
-public class ColorGen {
+public class ColorGenerator {
 
     private static MapColor[] layers;
-    private int[][] hMap;
-    private int size;
+    private final int[][] hMap;
+    private final int size;
     private int[][][] map;
 
-    public ColorGen(int[][] hm) {
+    /**
+     * Stores the height map to be colored.
+     * @param hm a height map
+     */
+    public ColorGenerator(int[][] hm) {
 
         hMap = hm;
         size = hm.length;
         map = new int[size][size][3];
     }
 
+    /**
+     * creates a new color map, accessible using getMap()
+     */
     public void generate() {
 
         map = color(hMap);
@@ -174,11 +177,19 @@ public class ColorGen {
         }
     }
 
+    /**
+     * Changes the colors of the layers.
+     * @param l the new layer colors, an array of length 4
+     */
     public static void setLayers(MapColor[] l) {
 
         layers = l;
     }
 
+    /**
+     * Gets the RGB, two dimensional map
+     * @return the colored array, the third dimension being the RGB values from 0-255
+     */
     public int[][][] getMap() {
 
         return map;
