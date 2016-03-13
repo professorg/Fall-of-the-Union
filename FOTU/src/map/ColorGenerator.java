@@ -36,21 +36,20 @@ public class ColorGenerator {
         toRoundMap(map);
     }
 
-    private static int[][][] color(int[][] m) {
+    private int[][][] color(int[][] m) {
 
-        int size = m.length;
-        int[][][] map = new int[size][size][3];
+        int[][][] cMap = new int[size][size][3];
 
         for (int i = 0; i < size; i++) {
 
             for (int j = 0; j < size; j++) {
 
                 int code = getCode(m[i][j]);
-                map[i][j] = getColor(code, m[i][j]);
+                cMap[i][j] = getColor(code, m[i][j]);
             }
         }
 
-        return map;
+        return cMap;
     }
 
     private static int[] getColor(int c, int h) {
@@ -155,9 +154,7 @@ public class ColorGenerator {
         return 1;
     }
 
-    private static void toRoundMap(int[][][] m) {
-
-        int size = m.length;
+    private void toRoundMap(int[][][] m) {
 
         for (int i = 0; i < size; i++) {
 

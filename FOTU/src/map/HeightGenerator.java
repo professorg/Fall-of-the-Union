@@ -11,17 +11,23 @@ package map;
  */
 public class HeightGenerator {
 
-    private int[][] map;
+    private Map map;
     private final int size;
+    private int[] warpX;
+    private int[] warpY;
+    private int iterations;
 
     /**
      * Makes a new square height map.
      * @param s the size of the new height map
      */
-    public HeightGenerator(int s) {
-
+    public HeightGenerator(int s, int i) {
+        
+        warpX = new int[]{-1, 0, 1, -1, 1, -1, 0, 1};
+        warpY = new int[]{-1, -1, -1, 0, 0, 1, 1, 1};
         size = s;
-        map = new int[s][s];
+        map = null;
+        iterations = i;
     }
 
     /**
@@ -32,7 +38,7 @@ public class HeightGenerator {
         double[][] m = new double [size][size];
         shuffle(m);
 
-        for (int i = 0; i < (int) size / 3; i++) {
+        for (int i = 0; i < iterations; i++) {
 
             smooth(m);
             System.out.println(i);
@@ -42,15 +48,14 @@ public class HeightGenerator {
         grain(m, ext);
         ext = extrema(m);
         regulate(m, ext);
-        map = toIntMap(m);
+        map = new Map(toIntMap(m));
     }
     
-    private static double[] extrema(double[][] m){
+    private double[] extrema(double[][] m){
         
         double[] ext = new double[2];
         ext[0] = m[0][0];
         ext[1] = m[0][0];
-        int size = m.length;
 
         for (int i = 0; i < size; i++) {
 
@@ -69,9 +74,7 @@ public class HeightGenerator {
         return ext;
     }
     
-    private static void grain(double[][] m, double[] e){
-        
-        int size = m.length;
+    private void grain(double[][] m, double[] e){
         
         for (int i = 0; i < size; i++) {
             
@@ -82,9 +85,7 @@ public class HeightGenerator {
         }
     }
 
-    private static void regulate(double[][] m, double[] e) {
-
-        int size = m.length;
+    private void regulate(double[][] m, double[] e) {
 
         double dis = 127.0 - ((e[1] - e[0]) / 2.0 + e[0]);
         double mult = 127.0 / Math.abs(e[1] - 127.0 + dis);
@@ -99,12 +100,9 @@ public class HeightGenerator {
         }
     }
 
-    private static void smooth(double[][] m) {
+    private void smooth(double[][] m) {
 
-        final int[] warpX = {-1, 0, 1, -1, 1, -1, 0, 1, 0, 2, 0, -2, -1, 1, -2, 2, -1, 1, -2, 2};
-        final int[] warpY = {-1, -1, -1, 0, 0, 1, 1, 1, -2, 0, 2, 0, -2, -2, -1, -1, 2, 2, 1, 1};
         double[][] ref = m;
-        int size = m.length;
 
         for (int i = 0; i < size; i++) {
 
@@ -112,21 +110,19 @@ public class HeightGenerator {
 
                 double sum = ref[i][j];
 
-                for (int k = 0; k < 20; k++) {
+                for (int k = 0; k < warpX.length; k++) {
 
                     int indX = (warpX[k] + i + size) % size;
                     int indY = (warpY[k] + j + size) % size;
                     sum += ref[indX][indY];
                 }
 
-                m[i][j] = sum / 21.0;
+                m[i][j] = sum / (warpX.length + 1);
             }
         }
     }
 
-    private static void shuffle(double[][] m) {
-
-        int size = m.length;
+    private void shuffle(double[][] m) {
 
         for (int i = 0; i < size; i++) {
 
@@ -137,9 +133,8 @@ public class HeightGenerator {
         }
     }
 
-    private static int[][] toIntMap(double[][] m) {
-
-        int size = m.length;
+    private int[][] toIntMap(double[][] m) {
+        
         int[][] nMap = new int[size][size];
         
         for (int i = 0; i < size; i++) {
@@ -162,10 +157,10 @@ public class HeightGenerator {
     }
     
     /**
-     *
+     * Gets the height map
      * @return the height map
      */
-    public int[][] getMap(){
+    public Map getMap(){
         
         return map;
     }
