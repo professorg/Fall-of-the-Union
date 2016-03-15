@@ -18,7 +18,7 @@ public class ColorGenerator {
 
     /**
      * Stores the height map to be colored.
-     * @param hm a height map
+     * @param hm A height map
      */
     public ColorGenerator(int[][] hm) {
 
@@ -28,7 +28,7 @@ public class ColorGenerator {
     }
 
     /**
-     * creates a new color map, accessible using getMap()
+     * Creates a new color map, accessible using getMap().
      */
     public void generate() {
 
@@ -176,7 +176,7 @@ public class ColorGenerator {
 
     /**
      * Changes the colors of the layers.
-     * @param l the new layer colors, an array of length 4
+     * @param l The new layer colors, an array of length 4.
      */
     public static void setLayers(MapColor[] l) {
 
@@ -185,7 +185,7 @@ public class ColorGenerator {
 
     /**
      * Gets the RGB, two dimensional map
-     * @return the colored array, the third dimension being the RGB values from 0-255
+     * @return The colored array, the third dimension being the RGB values from 0-255.
      */
     public int[][][] getMap() {
 

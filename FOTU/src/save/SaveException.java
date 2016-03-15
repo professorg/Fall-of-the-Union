@@ -24,7 +24,7 @@ public class SaveException extends Exception {
      * Constructs an instance of <code>FailedSaveException</code> with the
      * specified detail message.
      *
-     * @param msg the detail message.
+     * @param msg The detail message.
      */
     public SaveException(String msg) {
         

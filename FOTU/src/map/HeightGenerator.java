@@ -19,7 +19,8 @@ public class HeightGenerator {
 
     /**
      * Makes a new square height map.
-     * @param s the size of the new height map
+     * @param s The size of the new height map.
+     * @param i The number of iterations of smooth().
      */
     public HeightGenerator(int s, int i) {
         
@@ -157,8 +158,8 @@ public class HeightGenerator {
     }
     
     /**
-     * Gets the height map
-     * @return the height map
+     * Gets the height map.
+     * @return The height map.
      */
     public Map getMap(){
         

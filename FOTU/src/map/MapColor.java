@@ -6,7 +6,7 @@
 package map;
 
 /**
- *
+ * An enum of different layer colorings.
  * @author Cruz
  */
 public enum MapColor {

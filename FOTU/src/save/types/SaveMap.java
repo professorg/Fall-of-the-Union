@@ -14,8 +14,7 @@ import save.SaveException;
 import save.Write;
 
 /**
- * Saves height maps as .map files
- *
+ * Saves height maps as .map files.
  * @author Cruz
  */
 public class SaveMap implements Write<Map> {

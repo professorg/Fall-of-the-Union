@@ -6,7 +6,7 @@
 package map;
 
 /**
- *
+ * An object to consolidate all of the necessary map information.
  * @author Cruz
  */
 public class Map {
@@ -16,6 +16,10 @@ public class Map {
     private int[][][] coloredMap;
     private final ColorGenerator colorGen;
     
+    /**
+     * Initializing a new map from an existing height map.
+     * @param hm The height map.
+     */
     public Map(int[][] hm){
         
         size = hm.length;
@@ -23,17 +27,28 @@ public class Map {
         colorGen = new ColorGenerator(hm);
     }
     
+    /**
+     * Colors the height map.
+     */
     public void color(){
         
         colorGen.generate();
         coloredMap = colorGen.getMap();
     }
     
+    /**
+     * Gets the color generator for the height map to allow for changes.
+     * @return The color generator.
+     */
     public ColorGenerator getColorGenerator(){
         
         return colorGen;
     }
     
+    /**
+     * Gets a copy of the height map.
+     * @return A copy of the height map.
+     */
     public int[][] getHeightMap(){
         
         int[][] map = new int[size][size];
@@ -46,6 +61,10 @@ public class Map {
         return map;
     }
     
+    /**
+     * Gets a copy of the map with a third RGB dimension of length 3.
+     * @return A copy of coloredMap.
+     */
     public int[][][] getColoredMap(){
         
         int[][][] map = new int[size][size][3];
@@ -61,6 +80,10 @@ public class Map {
         return map;
     }
     
+    /**
+     * Gets the size of the map.
+     * @return The size.
+     */
     public int size(){
         
         return size;

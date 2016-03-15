@@ -24,7 +24,7 @@ public class LoadException extends Exception {
      * Constructs an instance of <code>LoadException</code> with the specified
      * detail message.
      *
-     * @param msg the detail message.
+     * @param msg The detail message.
      */
     public LoadException(String msg) {
         

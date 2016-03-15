@@ -13,7 +13,7 @@ import load.Read;
 import map.Map;
 
 /**
- *
+ * Loads .map files as a Map object
  * @author Cruz
  */
 public class LoadMap implements Read<Map> {
