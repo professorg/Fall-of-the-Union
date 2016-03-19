@@ -3,7 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package map;
+package map.generators;
+
+import map.types.LevelMap;
 
 /**
  * Used to generate and store height maps.
@@ -11,7 +13,7 @@ package map;
  */
 public class HeightGenerator {
 
-    private Map map;
+    private LevelMap map;
     private final int size;
     private int[] warpX;
     private int[] warpY;
@@ -42,14 +44,24 @@ public class HeightGenerator {
         for (int i = 0; i < iterations; i++) {
 
             smooth(m);
-            System.out.println(i);
         }
 
         double[] ext = extrema(m);
         grain(m, ext);
         ext = extrema(m);
         regulate(m, ext);
-        map = new Map(toIntMap(m));
+        map = new LevelMap(toIntMap(m));
+    }
+    
+    public void setIterations(int i){
+        
+        iterations = i;
+    }
+    
+    public void setAveArea(int[] wx, int[] wy){
+        
+        warpX = wx;
+        warpY = wy;
     }
     
     private double[] extrema(double[][] m){
@@ -161,7 +173,7 @@ public class HeightGenerator {
      * Gets the height map.
      * @return The height map.
      */
-    public Map getMap(){
+    public LevelMap getMap(){
         
         return map;
     }

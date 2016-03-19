@@ -9,18 +9,18 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
-import map.Map;
+import map.types.LevelMap;
 import save.SaveException;
 import save.Write;
 
 /**
- * Saves height maps as .map files.
+ * Saves level maps as .map files.
  * @author Cruz
  */
-public class SaveMap implements Write<Map> {
+public class SaveLevelMap implements Write<LevelMap> {
 
     @Override
-    public void write(File f, String n, Map d) throws SaveException {
+    public void write(File f, String n, LevelMap d) throws SaveException {
 
         if (!(f.exists() || f.getPath().endsWith(""))) {
 
@@ -30,7 +30,7 @@ public class SaveMap implements Write<Map> {
         try {
 
             f = new File(f.toString() + "/" + n + ".map");
-            int l = d.size();
+            int l = d.getSize();
             int[][] map = d.getHeightMap();
             FileWriter writer = new FileWriter(f);
             writer.write("" + l + "\n");

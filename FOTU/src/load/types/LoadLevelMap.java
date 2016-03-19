@@ -10,16 +10,16 @@ import java.io.FileNotFoundException;
 import java.util.Scanner;
 import load.LoadException;
 import load.Read;
-import map.Map;
+import map.types.LevelMap;
 
 /**
  * Loads .map files as a Map object
  * @author Cruz
  */
-public class LoadMap implements Read<Map> {
+public class LoadLevelMap implements Read<LevelMap> {
 
     @Override
-    public Map read(File f) throws LoadException {
+    public LevelMap read(File f) throws LoadException {
 
         if(!(f.exists() || f.getPath().endsWith("map"))){
             
@@ -48,6 +48,6 @@ public class LoadMap implements Read<Map> {
             throw new LoadException();
         }
         
-        return new Map(map);
+        return new LevelMap(map);
     }
 }
